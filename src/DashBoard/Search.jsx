@@ -11,8 +11,7 @@ function Searchs() {
         <input
           type="text"
           placeholder="Search here..."
-          className="bg-transparent outline-none px-2 text-sm w-full"
-        />
+          className="bg-transparent outline-none px-2 text-sm w-full" />
       </div>
 
       {/* Right Section */}

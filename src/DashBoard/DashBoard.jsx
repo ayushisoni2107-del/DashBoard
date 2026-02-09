@@ -19,12 +19,34 @@ function Dashboard() {
     { month: "Dec", current: 15000, old: 18000 },
   ];
 
+  const salesData = [
+    { month: "Jan", current: 12000, old: 15000 },
+    { month: "Feb", current: 18000, old: 14000 },
+    { month: "Mar", current: 22000, old: 16000 },
+    { month: "Apr", current: 26000, old: 30000 },
+    { month: "May", current: 52000, old: 20000 },
+    { month: "Jun", current: 24000, old: 32000 },
+    { month: "Jul", current: 30000, old: 36000 },
+    { month: "Aug", current: 40000, old: 50000 },
+    { month: "Sep", current: 35000, old: 42000 },
+    { month: "Oct", current: 47000, old: 21000 },
+    { month: "Nov", current: 15000, old: 18000 },
+    { month: "Dec", current: 12000, old: 14000 },
+  ];
+
+
   const pieData = [
     { name: "Orders", value: 60 },
     { name: "Visitors", value: 1200 },
   ];
 
   const COLORS = ["#ff7a00", "#e5e7eb"];
+
+  const returnData = [
+    { name: "Return", value: 60 },
+    { name: "Total", value: 1200 },
+  ];
+
 
   return (
     <div className="grid grid-cols-12 gap-6" >
@@ -203,10 +225,116 @@ function Dashboard() {
             <span className="text-gray-400">● Visitors</span>
             <span>1200</span>
           </div>
+        </div>
+      </div>
+
+      {/* SALES SECTION */}
+      {/* SALES + RETURN ORDERS */}
+      <div className="col-span-12 grid grid-cols-12 gap-6">
+
+        {/* SALES */}
+        <div className="col-span-12 lg:col-span-9 bg-white rounded-xl shadow p-5">
+
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+
+            <h2 className="font-semibold text-lg">Sales</h2>
+
+            {/* Filters */}
+            <div className="flex gap-2 text-sm flex-wrap">
+              <button className="px-3 py-1 rounded bg-orange-500 text-white">
+                12 months
+              </button>
+
+              <button className="px-3 py-1 rounded border text-gray-500 hover:bg-gray-100">
+                30 days
+              </button>
+
+              <button className="px-3 py-1 rounded border text-gray-500 hover:bg-gray-100">
+                7 days
+              </button>
+
+              <button className="px-3 py-1 rounded border text-gray-500 hover:bg-gray-100">
+                24 hours
+              </button>
+            </div>
+
+          </div>
+
+          {/* Chart */}
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={salesData}>
+
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+
+              {/* Current */}
+              <Line
+                type="monotone"
+                dataKey="current"
+                stroke="#ff7a00"
+                strokeWidth={3}
+              />
+
+              {/* Old */}
+              <Line
+                type="monotone"
+                dataKey="old"
+                stroke="#6b7280"
+                strokeDasharray="5 5"
+              />
+
+            </LineChart>
+          </ResponsiveContainer>
+
+        </div>
+
+
+        {/* RETURN ORDERS */}
+        <div className="col-span-12 lg:col-span-3 bg-white rounded-xl shadow p-5">
+
+          <h2 className="font-semibold mb-4">Return Orders</h2>
+
+          <div className="flex justify-center">
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+
+                <Pie
+                  data={returnData}
+                  dataKey="value"
+                  innerRadius={60}
+                  outerRadius={80}
+                >
+                  {returnData.map((_, i) => (
+                    <Cell key={i} fill={COLORS[i]} />
+                  ))}
+                </Pie>
+
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+
+
+          {/* Legend */}
+          <div className="mt-4 space-y-2 text-sm text-gray-600">
+
+            <div className="flex justify-between items-center">
+              <span className="text-orange-500">● Return Orders</span>
+              <span>60</span>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <span className="text-gray-400">● Total Orders</span>
+              <span>1200</span>
+            </div>
+
+          </div>
 
         </div>
 
       </div>
+
 
     </div >
   );

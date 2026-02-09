@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { LayoutGrid, Sliders, ChevronDown, Box, Users, ShoppingBag, Percent, User, } from "lucide-react";
+import { LayoutGrid, Sliders, ChevronDown, Box, Users, ShoppingBag, Percent, User, Link as LinkIcon, } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 function SideMenu() {
 
   // Dropdown states
@@ -39,7 +41,7 @@ function SideMenu() {
       {/* Scrollable Menu */}
       <div className="flex-1 px-4 py-6 space-y-2 text-sm overflow-y-auto scrollbar-hide">
 
-        {/* ================= DASHBOARD ================= */}
+        {/*  DASHBOARD */}
         <button
           onClick={() => {
             setActiveMenu("dashboard");
@@ -53,7 +55,7 @@ function SideMenu() {
           </div>
         </button>
 
-        {/* ================= CUSTOMIZE ================= */}
+        {/* CUSTOMIZE  */}
         <button
           onClick={() => {
             setOpenCustomize(!openCustomize);
@@ -74,15 +76,23 @@ function SideMenu() {
 
         {openCustomize && (
           <div className="ml-8 space-y-2 text-gray-500">
-            <div className="hover:text-black cursor-pointer">Navbar</div>
+            <Link
+              to="/navbarpage"
+              className="hover:text-black cursor-pointer block">
+              Navbar
+            </Link>
             <div className="hover:text-black cursor-pointer">Sliders</div>
             <div className="hover:text-black cursor-pointer">Sections</div>
             <div className="hover:text-black cursor-pointer">Review</div>
-            <div className="hover:text-black cursor-pointer">Category</div>
+            <Link
+              to="/catepages"
+              className="hover:text-black cursor-pointer block">
+              Category
+            </Link>
           </div>
         )}
 
-        {/* ================= PRODUCTS ================= */}
+        {/* PRODUCTS */}
         <button
           onClick={() => {
             setOpenProducts(!openProducts);
@@ -110,7 +120,7 @@ function SideMenu() {
           </div>
         )}
 
-        {/* ================= CUSTOMERS ================= */}
+        {/* CUSTOMERS*/}
         <div
           onClick={() => setActiveMenu("customers")}
           className={singleMenuClass("customers")}
@@ -119,7 +129,6 @@ function SideMenu() {
           Customers
         </div>
 
-        {/* ================= ORDERS ================= */}
         <button
           onClick={() => {
             setOpenOrders(!openOrders);
@@ -148,7 +157,7 @@ function SideMenu() {
           </div>
         )}
 
-        {/* ================= DISCOUNTS ================= */}
+
         <div
           onClick={() => setActiveMenu("discounts")}
           className={singleMenuClass("discounts")}
@@ -157,7 +166,7 @@ function SideMenu() {
           Discounts
         </div>
 
-        {/* ================= USERS ================= */}
+
         <div
           onClick={() => setActiveMenu("users")}
           className={singleMenuClass("users")}
