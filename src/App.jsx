@@ -1,17 +1,14 @@
 import { useState } from 'react'
 import { Routes, Route } from "react-router-dom";
-import Dash from './DashBoard/Dash'
-import SideMenu from './DashBoard/SideMenu';
-import Dashboard from './DashBoard/DashBoard';
+import DashB from './Pages/DashB';
 
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dash />} />
-        <Route path="/SideMenu" element={<SideMenu />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/" element={<DashB />} />
+        <Route path="/dashboard" element={<DashB />} />
       </Routes>
     </>
   )

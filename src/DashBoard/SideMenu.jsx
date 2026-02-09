@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { LayoutGrid, Sliders, ChevronDown, Box, Users, ShoppingBag, Percent, User, } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import Dashboard from "./DashBoard";
 function SideMenu() {
 
   // Dropdown states
@@ -44,7 +43,7 @@ function SideMenu() {
         <button
           onClick={() => {
             setActiveMenu("dashboard");
-            navigate("/Dashboard");
+            navigate("/dashboard");
           }}
           className={singleMenuClass("dashboard")}
         >
