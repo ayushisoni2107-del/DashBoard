@@ -126,29 +126,33 @@ function SideMenu() {
 
         {openProducts && (
           <div className="ml-8 space-y-2">
-            <div
+            <Link
+              to="/productpage"
               onClick={() => setActiveItem("add-product")}
               className={subMenuClass("add-product")}>
               Add Product
-            </div>
+            </Link>
 
-            <div
+            <Link
+              to="/viewproductpage"
               onClick={() => setActiveItem("view-product")}
               className={subMenuClass("view-product")}>
               View Product
-            </div>
+            </Link>
 
-            <div
+            <Link
+              to="/inventorypage"
               onClick={() => setActiveItem("inventory")}
               className={subMenuClass("inventory")} >
               Inventory
-            </div>
+            </Link>
 
-            <div
+            <Link
+              to="/categorypage"
               onClick={() => setActiveItem("product-category")}
               className={subMenuClass("product-category")}>
               Category
-            </div>
+            </Link>
           </div>
         )}
 
