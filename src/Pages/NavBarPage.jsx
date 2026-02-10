@@ -1,7 +1,7 @@
 import React from "react";
 import SideMenu from "../DashBoard/SideMenu";
 import Searchs from "../DashBoard/Search";
-import Navbar from "../Nav/Navbar";
+import Navbar from "../Customize/Nav/Navbar";
 function NavBarPage() {
   return (
     <>

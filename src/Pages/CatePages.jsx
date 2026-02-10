@@ -1,7 +1,7 @@
 import React from "react";
 import SideMenu from "../DashBoard/SideMenu";
 import Searchs from "../DashBoard/Search";
-import Cate from "../Cate/Cate"
+import Cate from "../Customize/Cate/Cate"
 function DashB() {
   return (
     <>

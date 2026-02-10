@@ -1,130 +1,160 @@
 import React, { useState } from "react";
-import { LayoutGrid, Sliders, ChevronDown, Box, Users, ShoppingBag, Percent, User, Link as LinkIcon, } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import {
+  LayoutGrid,
+  Sliders,
+  ChevronDown,
+  Box,
+  Users,
+  ShoppingBag,
+  Percent,
+  User,
+} from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
 
 function SideMenu() {
-
   // Dropdown states
   const [openCustomize, setOpenCustomize] = useState(false);
   const [openProducts, setOpenProducts] = useState(false);
   const [openOrders, setOpenOrders] = useState(false);
 
+  // Active item state (ONLY THIS)
+  const [activeItem, setActiveItem] = useState("");
+
   const navigate = useNavigate();
 
-  // Active menu state
-  const [activeMenu, setActiveMenu] = useState("dashboard");
-
-  // Common button style
+  // Common style
   const menuClass = (name) =>
-    `flex items-center justify-between w-full px-4 py-2 rounded-lg transition
-    ${activeMenu === name
+    `flex items-center gap-3 w-full px-4 py-2 rounded-lg transition
+     ${activeItem === name
       ? "bg-orange-500 text-white"
       : "hover:bg-gray-100 text-gray-600"
     }`;
-  const singleMenuClass = (name) =>
-    `flex items-center gap-3 w-full px-4 py-3 rounded-lg transition
-   ${activeMenu === name
-      ? "bg-orange-500 text-white font-medium"
-      : "hover:bg-gray-100 text-gray-600"}`;
+
+  const subMenuClass = (name) =>
+    `block px-2 py-1 rounded transition
+     ${activeItem === name
+      ? "bg-orange-100 text-orange-600 font-medium"
+      : "hover:bg-gray-100 text-gray-500"
+    }`;
 
   return (
     <div className="w-64 h-screen bg-white shadow-sm fixed left-0 top-0 flex flex-col">
 
-      {/* Logo */}
       <div className="flex items-center justify-center px-6 py-5">
         <div className="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center font-bold text-lg">
           TWB
         </div>
       </div>
 
-      {/* Scrollable Menu */}
-      <div className="flex-1 px-4 py-6 space-y-2 text-sm overflow-y-auto scrollbar-hide">
 
-        {/*  DASHBOARD */}
+      <div className="flex-1 px-4 py-6 space-y-2 text-sm overflow-y-auto">
         <button
           onClick={() => {
-            setActiveMenu("dashboard");
             navigate("/dashboard");
+            setActiveItem("dashboard");
           }}
-          className={singleMenuClass("dashboard")}
-        >
-          <div className="flex items-center gap-3">
-            <LayoutGrid size={18} />
-            Dashboard
-          </div>
+          className={menuClass("dashboard")}>
+          <LayoutGrid size={18} />
+          Dashboard
         </button>
 
-        {/* CUSTOMIZE  */}
         <button
           onClick={() => {
             setOpenCustomize(!openCustomize);
-            setActiveMenu("customize");
+            setActiveItem("customize");
           }}
-          className={menuClass("customize")}
-        >
+          className={menuClass("customize")} >
           <div className="flex items-center gap-3">
             <Sliders size={18} />
             Customize
           </div>
-
           <ChevronDown
             size={16}
-            className={`${openCustomize ? "rotate-180" : ""} transition`}
-          />
+            className={`${openCustomize ? "rotate-180" : ""} transition`} />
         </button>
 
         {openCustomize && (
-          <div className="ml-8 space-y-2 text-gray-500">
+          <div className="ml-8 space-y-2">
             <Link
               to="/navbarpage"
-              className="hover:text-black cursor-pointer block">
+              onClick={() => setActiveItem("navbar")}
+              className={subMenuClass("navbar")}>
               Navbar
             </Link>
-            <div className="hover:text-black cursor-pointer">Sliders</div>
-            <div className="hover:text-black cursor-pointer">Sections</div>
-            <div className="hover:text-black cursor-pointer">Review</div>
+
+            <Link
+              to="/sliderpage"
+              onClick={() => setActiveItem("sliders")}
+              className={subMenuClass("sliders")} >
+              Sliders
+            </Link>
+
+            <Link
+              to="/sectionpage"
+              onClick={() => setActiveItem("sections")}
+              className={subMenuClass("sections")} >
+              Sections
+            </Link>
+
+            <div
+              onClick={() => setActiveItem("review")}
+              className={subMenuClass("review")}>
+              Review
+            </div>
+
             <Link
               to="/catepages"
-              className="hover:text-black cursor-pointer block">
+              onClick={() => setActiveItem("category")}
+              className={subMenuClass("category")}>
               Category
             </Link>
           </div>
         )}
 
-        {/* PRODUCTS */}
         <button
           onClick={() => {
             setOpenProducts(!openProducts);
-            setActiveMenu("products");
+            setActiveItem("products");
           }}
-          className={menuClass("products")}
-        >
-          <div className="flex items-center gap-3">
-            <Box size={18} />
-            Products
-          </div>
-
+          className={menuClass("products")} >
+          <Box size={18} />
+          Products
           <ChevronDown
             size={16}
-            className={`${openProducts ? "rotate-180" : ""} transition`}
-          />
+            className={`${openProducts ? "rotate-180" : ""} transition`} />
         </button>
 
         {openProducts && (
-          <div className="ml-8 space-y-2 text-gray-500">
-            <div className="hover:text-black cursor-pointer">Add Product</div>
-            <div className="hover:text-black cursor-pointer">View Product</div>
-            <div className="hover:text-black cursor-pointer">Inventory</div>
-            <div className="hover:text-black cursor-pointer">Category</div>
+          <div className="ml-8 space-y-2">
+            <div
+              onClick={() => setActiveItem("add-product")}
+              className={subMenuClass("add-product")}>
+              Add Product
+            </div>
+
+            <div
+              onClick={() => setActiveItem("view-product")}
+              className={subMenuClass("view-product")}>
+              View Product
+            </div>
+
+            <div
+              onClick={() => setActiveItem("inventory")}
+              className={subMenuClass("inventory")} >
+              Inventory
+            </div>
+
+            <div
+              onClick={() => setActiveItem("product-category")}
+              className={subMenuClass("product-category")}>
+              Category
+            </div>
           </div>
         )}
 
-        {/* CUSTOMERS*/}
         <div
-          onClick={() => setActiveMenu("customers")}
-          className={singleMenuClass("customers")}
-        >
+          onClick={() => setActiveItem("customers")}
+          className={menuClass("customers")} >
           <User size={18} />
           Customers
         </div>
@@ -132,52 +162,53 @@ function SideMenu() {
         <button
           onClick={() => {
             setOpenOrders(!openOrders);
-            setActiveMenu("orders");
+            setActiveItem("orders");
           }}
-          className={menuClass("orders")}
-        >
-          <div className="flex items-center gap-3">
-            <ShoppingBag size={18} />
-            Orders
-          </div>
-
+          className={menuClass("orders")} >
+          <ShoppingBag size={18} />
+          Orders
           <ChevronDown
             size={16}
-            className={`${openOrders ? "rotate-180" : ""} transition`}
-          />
+            className={`${openOrders ? "rotate-180" : ""} transition`} />
         </button>
 
         {openOrders && (
-          <div className="ml-8 space-y-2 text-gray-500">
-            <div className="hover:text-black cursor-pointer">All Orders</div>
-            <div className="hover:text-black cursor-pointer">Draft</div>
-            <div className="hover:text-black cursor-pointer">
+          <div className="ml-8 space-y-2">
+            <div
+              onClick={() => setActiveItem("all-orders")}
+              className={subMenuClass("all-orders")}>
+              All Orders
+            </div>
+
+            <div
+              onClick={() => setActiveItem("draft")}
+              className={subMenuClass("draft")}>
+              Draft
+            </div>
+
+            <div
+              onClick={() => setActiveItem("abandoned")}
+              className={subMenuClass("abandoned")}>
               Abandoned Checkouts
             </div>
           </div>
         )}
 
-
         <div
-          onClick={() => setActiveMenu("discounts")}
-          className={singleMenuClass("discounts")}
-        >
+          onClick={() => setActiveItem("discounts")}
+          className={menuClass("discounts")} >
           <Percent size={18} />
           Discounts
         </div>
 
-
         <div
-          onClick={() => setActiveMenu("users")}
-          className={singleMenuClass("users")}
-        >
+          onClick={() => setActiveItem("users")}
+          className={menuClass("users")}>
           <Users size={18} />
           Users & Permission
         </div>
-
       </div>
     </div>
   );
 }
-
 export default SideMenu;
