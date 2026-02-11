@@ -156,12 +156,13 @@ function SideMenu() {
           </div>
         )}
 
-        <div
+        <Link
+          to="/customerpage"
           onClick={() => setActiveItem("customers")}
           className={menuClass("customers")} >
           <User size={18} />
           Customers
-        </div>
+        </Link>
 
         <button
           onClick={() => {
@@ -198,12 +199,13 @@ function SideMenu() {
           </div>
         )}
 
-        <div
+        <Link
+          to="/discountpage"
           onClick={() => setActiveItem("discounts")}
           className={menuClass("discounts")} >
           <Percent size={18} />
           Discounts
-        </div>
+        </Link>
 
         <div
           onClick={() => setActiveItem("users")}

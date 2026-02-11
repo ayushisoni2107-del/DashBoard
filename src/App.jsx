@@ -9,7 +9,11 @@ import ProductPage from "./Pages/ProductPage";
 import ViewProductPage from './Pages/ViewProductPage';
 import InventoryPage from './Pages/InventoryPage';
 import CategoryPage from "./Pages/CategoryPage"
-
+import CustomerPage from "./Pages/CustomerPage"
+import AddCustomerPage from './Pages/AddCustomerPage';
+import DiscountPage from './Pages/DiscountPage';
+import AmountProductPage from "./Pages/AmountProductPage"
+import AmountOrderPage from "./Pages/AmountOrderPage"
 function App() {
   return (
     <>
@@ -24,6 +28,11 @@ function App() {
         <Route path="/viewproductpage" element={<ViewProductPage />} />
         <Route path="/inventorypage" element={<InventoryPage />} />
         <Route path="/categorypage" element={<CategoryPage />} />
+        <Route path="/customerpage" element={<CustomerPage />} />
+        <Route path="/addcustomerpage" element={<AddCustomerPage />} />
+        <Route path="/discountpage" element={<DiscountPage />} />
+        <Route path="/amountproductpage" element={<AmountProductPage />} />
+        <Route path="/amountorderpage" element={<AmountOrderPage />} />
       </Routes>
     </>
   )
