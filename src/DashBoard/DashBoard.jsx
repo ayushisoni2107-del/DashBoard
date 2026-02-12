@@ -1,5 +1,8 @@
 import React from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, } from "recharts";
+import {
+  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, RadialBarChart,
+  RadialBar, PieChart, Pie, Cell,
+} from "recharts";
 
 function Dashboard() {
   /*CHART DATA */
@@ -35,9 +38,18 @@ function Dashboard() {
   ];
 
 
-  const pieData = [
-    { name: "Orders", value: 60 },
-    { name: "Visitors", value: 1200 },
+
+  const data = [
+    {
+      name: "Visitors",
+      value: 100,
+      fill: "#e5e7eb",   // outer grey
+    },
+    {
+      name: "Orders",
+      value: 60,
+      fill: "#f97316",   // inner orange
+    }
   ];
 
   const COLORS = ["#ff7a00", "#e5e7eb"];
@@ -200,20 +212,45 @@ function Dashboard() {
         <h2 className="font-semibold mb-4">
           Orders Vs Website Visits
         </h2>
-        <ResponsiveContainer width="100%" height={250}>
-          <PieChart>
-            <Pie
-              data={pieData}
-              dataKey="value"
-              innerRadius={70}
-              outerRadius={100}>
+        <ResponsiveContainer width="100%" height={220}>
+          <ResponsiveContainer width="100%" height={220}>
+            <PieChart>
 
-              {pieData.map((_, i) => (
-                <Cell key={i} fill={COLORS[i]} />
-              ))}
-            </Pie>
-          </PieChart>
+              {/* Background Half Circle */}
+              <Pie
+                data={[{ value: 100 }]}
+                dataKey="value"
+                cx="50%"
+                cy="100%"
+                startAngle={180}
+                endAngle={0}
+                innerRadius={70}
+                outerRadius={100}
+                fill="#e5e7eb"
+                stroke="none"
+              />
+
+              {/* Orange Progress */}
+              <Pie
+                data={[{ value: 60 }, { value: 40 }]}  // 60% progress
+                dataKey="value"
+                cx="50%"
+                cy="100%"
+                startAngle={180}
+                endAngle={0}
+                innerRadius={80}
+                outerRadius={90}
+                stroke="none"
+              >
+                <Cell fill="#f97316" />
+                <Cell fill="transparent" />
+              </Pie>
+
+            </PieChart>
+          </ResponsiveContainer>
+
         </ResponsiveContainer>
+
 
         <div className="space-y-2 text-sm text-gray-600 mt-4">
           <div className="flex justify-between">

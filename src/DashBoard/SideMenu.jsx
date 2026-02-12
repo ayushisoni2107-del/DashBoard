@@ -96,11 +96,12 @@ function SideMenu() {
               Sections
             </Link>
 
-            <div
+            <Link
+              to="/reviewpage"
               onClick={() => setActiveItem("review")}
               className={subMenuClass("review")}>
               Review
-            </div>
+            </Link>
 
             <Link
               to="/catepages"

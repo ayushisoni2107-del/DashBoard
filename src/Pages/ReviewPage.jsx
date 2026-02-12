@@ -1,16 +1,16 @@
 import React from "react";
 import SideMenu from "../DashBoard/SideMenu";
 import Searchs from "../DashBoard/Search";
-import AmountOrder from "../Dis/AmountOrder"
+import Review from "../Customize/Rev/Review";
 
-export default function AmountOrderPage() {
+export default function SliderPage() {
   return (
     <div className="flex">
       <SideMenu />
       <div className="flex-1 ml-64">
         <Searchs />
         <main className="mt-16 p-6 bg-gray-50 min-h-screen">
-          <AmountOrder />
+          <Review />
         </main>
       </div>
     </div>

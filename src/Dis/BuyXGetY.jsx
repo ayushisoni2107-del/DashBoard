@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export default function AmountOrder() {
+export default function BuyXGetY() {
   const navigate = useNavigate();
 
   const [method, setMethod] = useState("code");
@@ -20,7 +20,7 @@ export default function AmountOrder() {
 
           {/* Amount Section */}
           <div className="bg-[#f3f6f9] p-5 rounded-xl">
-            <h3 className="font-semibold mb-4">Amount off Orders</h3>
+            <h3 className="font-semibold mb-4">Buy X Get Y</h3>
 
             <div className="flex gap-6 mb-3 text-sm">
               <label className="flex items-center gap-2">Selected :
@@ -63,70 +63,106 @@ export default function AmountOrder() {
 
           {/* Add Value */}
           <div className="bg-[#f3f6f9] p-5 rounded-xl">
-            <h3 className="font-semibold mb-4">Add Value</h3>
-
-            <div className="flex gap-3">
-              <input
-                type="number"
-                placeholder="Add Value in Percentage"
-                className="w-1/2 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
-              />
-
-              <span className="text-orange-500 self-center">or</span>
-
-              <input
-                type="number"
-                placeholder="Add Value in Fixed Amount"
-                className="w-1/2 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
-              />
-
-              <button
-                onClick={() => navigate("/productpage")}
-                className="bg-orange-500 text-white px-5 rounded-lg">
-                Browse
-              </button>
-
-            </div>
-          </div>
-
-          {/* Minimum Purchase */}
-          <div className="bg-[#f3f6f9] p-5 rounded-xl">
-            <h3 className="font-semibold mb-4">Minimum Purchase Requirement</h3>
+            <h3 className="font-semibold mb-4">Customer Buys</h3>
 
             <div className="flex gap-3">
               <input
                 type="number"
                 placeholder="Minimum purchase amount"
-                className="w-1/2 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
+                className="w-90 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
               />
 
               <span className="text-orange-500 self-center">or</span>
 
               <input
                 type="number"
-                placeholder="Minimum quantity"
-                className="w-1/2 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
+                placeholder="Minimum quantity of items "
+                className="w-90 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
               />
+            </div>
+            <div className="flex gap-6 mb-3 text-[14px]">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  checked={method === "code"}
+                  onChange={() => setMethod("code")}
+                />
+                Specific Collection
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  checked={method === "auto"}
+                  onChange={() => setMethod("auto")}
+                />
+                Specific Product
+              </label>
+            </div>
+            <div className="flex gap-3">
+              <input
+                placeholder="Search Collection "
+                className="w-90 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none"
+              />
+              <button
+                onClick={() => navigate("/productpage")}
+                className="bg-orange-500 text-white px-5 rounded-lg">
+                Browse
+              </button>
             </div>
           </div>
 
           <div className="bg-[#f3f6f9] p-5 rounded-xl">
-            <h3 className="font-semibold mb-3">Maximum Discount Uses</h3>
+            <h3 className="font-semibold mb-4">Customer Gets</h3>
 
-            <div className="flex gap-6 text-sm">
+            <div className="flex gap-3">
+              <input
+                type="number"
+                placeholder="Minimum purchase amount"
+                className="w-90 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
+              />
+
+              <span className="text-orange-500 self-center">or</span>
+
+              <input
+                type="number"
+                placeholder="Minimum quantity of items "
+                className="w-90 px-4 py-2 border border-gray-100 rounded-lg focus:outline-none"
+              />
+            </div>
+            <div className="flex gap-6 mb-3 text-[14px]">
               <label className="flex items-center gap-2">
-                <input type="checkbox" defaultChecked /> limit no of times this discount can be used in total
+                <input
+                  type="radio"
+                  checked={method === "code"}
+                  onChange={() => setMethod("code")}
+                />
+                Specific Collection
               </label>
 
               <label className="flex items-center gap-2">
-                <input type="checkbox" /> limit to one use per customer
+                <input
+                  type="radio"
+                  checked={method === "auto"}
+                  onChange={() => setMethod("auto")}
+                />
+                Specific Product
               </label>
-
+            </div>
+            <div className="flex gap-3 pb-2">
+              <input
+                placeholder="Search Collection "
+                className="w-90 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none"
+              />
+              <button
+                onClick={() => navigate("/productpage")}
+                className="bg-orange-500 text-white px-5 rounded-lg">
+                Browse
+              </button>
             </div>
             <input
-              type=""
-              placeholder=""
-              className="w-90 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
+              placeholder="Set a maximum number of uses per order"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none"
             />
           </div>
 
@@ -191,48 +227,31 @@ export default function AmountOrder() {
             </div>
           </div>
 
-          {/* Footer Buttons */}
-          <div className="flex justify-end gap-4 pt-4">
-            <button
-              className="border border-orange-500 text-orange-500 px-6 py-2 rounded-lg"
-            >
-              Cancel
-            </button>
-
-            <button
-              onClick={() => navigate("/productpage")}
-              className="bg-orange-500 text-white px-6 py-2 rounded-lg"
-            >
-              Save
-            </button>
-          </div>
-
         </div>
 
         {/* Right Summary */}
         <div className="bg-[#f3f6f9] p-5 rounded-xl h-fit">
-          <h3 className="font-semibold mb-4">Amount off Orders</h3>
+          <h3 className="font-semibold mb-4">Buy X Get Y</h3>
 
           <div className="space-y-3 text-sm text-gray-600">
 
             <div>
-              <p className="font-medium text-black">Discount Code</p>
-              <p>CC43567X45</p>
+              <p className="font-medium text-black">Automatic Discount</p>
+              <p>Buy 1 Get 1</p>
             </div>
 
             <div>
-              <p className="font-medium text-black">Value</p>
-              <p>20%</p>
+              <p className="font-medium text-black">Customer Buys</p>
+              <p>dress,</p>
+              <p>suit set,</p>
+              <p>tops</p>
             </div>
 
             <div>
-              <p className="font-medium text-black">Minimum Purchase Requirement</p>
-              <p>2 products</p>
-            </div>
-
-            <div>
-              <p className="font-medium text-black">Maximum Discount Uses</p>
-              <p>Limit to one user per customer</p>
+              <p className="font-medium text-black">Customer Gets</p>
+              <p>dress,</p>
+              <p>suit set,</p>
+              <p>tops</p>
             </div>
 
             <div>
@@ -241,10 +260,25 @@ export default function AmountOrder() {
             </div>
 
           </div>
+
         </div>
 
-      </div>
 
-    </div>
+      </div>
+      <div className="flex justify-end gap-4 pt-4">
+        <button
+          className="border border-orange-500 text-orange-500 px-6 py-2 rounded-lg"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={() => navigate("/productpage")}
+          className="bg-orange-500 text-white px-6 py-2 rounded-lg"
+        >
+          Save
+        </button>
+      </div>
+    </div >
   );
 }

@@ -147,13 +147,13 @@ export default function DiscountPage() {
               <ModalItem
                 title="Buy X Get Y"
                 subtitle="Product discount"
-                onClick={() => navigate("/discount/buyxgety")}
+                onClick={() => navigate("/buyxgetypage")}
               />
 
               <ModalItem
                 title="Free Shipping"
                 subtitle="Product discount"
-                onClick={() => navigate("/discount/freeshipping")}
+                onClick={() => navigate("/freeshippage")}
               />
 
             </div>
