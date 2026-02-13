@@ -1,5 +1,7 @@
-import { Search, Calendar, ChevronDown, Star, Check } from "lucide-react";
+import { Search, Calendar, ChevronDown, Star, Check, Eye } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Review() {
   const reviews = Array(6).fill({
@@ -8,6 +10,8 @@ export default function Review() {
     rating: 4,
   });
   const [selected, setSelected] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#eef2f6] p-4 md:p-6">
@@ -60,6 +64,26 @@ export default function Review() {
           </div>
         </div>
 
+        {/* Messages */}
+        {showHint && !selected && (
+          <div className="mb-4 w-fit bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm">
+            <p className="font-medium">Display this review on website</p>
+            <p className="text-xs text-red-500">Turn this toggle on.</p>
+          </div>
+        )}
+
+        {selected && (
+          <div
+            onClick={() => navigate("/allreviewpage")}
+            className="cursor-pointer mb-4 w-fit bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm flex items-center gap-2 hover:bg-green-100 transition"
+          >
+            <Eye size={16} />
+            <span className="font-medium">Displayed on Website!</span>
+          </div>
+        )}
+
+
+
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4
  gap-6 justify-items-center">
@@ -67,18 +91,29 @@ export default function Review() {
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="relative bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between"
+              onClick={() => index === 0 && setShowHint(true)}
+              className="relative bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between cursor-pointer"
             >
               {/* Toggle Circle (ONLY FIRST CARD) */}
               {index === 0 && (
                 <button
-                  onClick={() => setSelected(!selected)}
-                  className={`absolute top-4 left-4 w-4 h-4 rounded-full flex items-center justify-center transition
-        ${selected ? "bg-gray-200" : "bg-black"}`}
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent card click
+                    setSelected(!selected);
+                    setShowHint(false);
+                  }}
+                  className={`absolute top-4 left-4 w-7 h-4 rounded-full flex items-center transition-all duration-300
+      ${selected ? "bg-green-500" : "bg-black"}`}
                 >
-                  {selected && <Check size={14} className="text-black" />}
+                  <div
+                    className={`w-3 h-3 bg-white rounded-full transform transition-all duration-300 flex items-center justify-center
+        ${selected ? "translate-x-3" : "translate-x-0"}`}
+                  >
+                    {selected && <Check size={10} className="text-black" />}
+                  </div>
                 </button>
               )}
+
 
               {/* Image Placeholder */}
               <div className="w-42 h-62 bg-gray-100 rounded-xl mb-4 mx-auto" />

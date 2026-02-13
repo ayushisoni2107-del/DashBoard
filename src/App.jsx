@@ -6,6 +6,7 @@ import CatePages from "./Pages/CatePages";
 import SliderPage from './Pages/SliderPage';
 import SectionPage from './Pages/SectionPage';
 import ReviewPage from "./Pages/ReviewPage"
+import AllReviewPage from "./Pages/AllReviewPage"
 import ProductPage from "./Pages/ProductPage";
 import ViewProductPage from './Pages/ViewProductPage';
 import InventoryPage from './Pages/InventoryPage';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/sliderpage" element={<SliderPage />} />
         <Route path="/sectionpage" element={<SectionPage />} />
         <Route path="/reviewpage" element={<ReviewPage />} />
+        <Route path="/allreviewpage" element={<AllReviewPage />} />
         <Route path="/productpage" element={<ProductPage />} />
         <Route path="/viewproductpage" element={<ViewProductPage />} />
         <Route path="/inventorypage" element={<InventoryPage />} />
